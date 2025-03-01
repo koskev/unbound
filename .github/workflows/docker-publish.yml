@@ -2,19 +2,20 @@ name: Build
 
 # Controls when the workflow will run
 on:
+  workflow_dispatch:
   push:
     branches:
-      - 'main'
-      - 'dev'
+      - "main"
+      - "dev"
     tags:
-      - '*'
+      - "*"
   pull_request:
     branches:
-      - 'main'
-      - 'dev'
+      - "main"
+      - "dev"
 
 # permissions are needed if pushing to ghcr.io
-permissions: 
+permissions:
   packages: write
 
 jobs:
@@ -49,5 +50,3 @@ jobs:
           platforms: linux/amd64,linux/arm/v7, linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/${{ github.repository }}:${{ steps.date.outputs.date }}
-
-
